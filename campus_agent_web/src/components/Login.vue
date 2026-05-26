@@ -63,12 +63,9 @@
 
         <div class="flex items-center justify-between">
           <label class="flex items-center">
-            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+            <input type="checkbox" v-model="rememberMe" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
             <span class="ml-2 text-sm text-gray-600">记住我</span>
           </label>
-          <button type="button" class="text-sm text-blue-600 hover:text-blue-800 transition-colors">
-            忘记密码？
-          </button>
         </div>
 
         <button
@@ -106,6 +103,7 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { authAPI } from '../api/auth'
 
 const router = useRouter()
 const form = reactive({
@@ -115,20 +113,48 @@ const form = reactive({
 const showPassword = ref(false)
 const loading = ref(false)
 const error = ref('')
+const rememberMe = ref(false)
 
 const handleLogin = async () => {
   error.value = ''
+  loading.value = true
   
-  const registeredUsers = JSON.parse(localStorage.getItem('users') || '[]')
-  const user = registeredUsers.find(u => u.username === form.username && u.password === form.password)
-  
-  if (user) {
-    loading.value = true
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    localStorage.setItem('user', JSON.stringify(user))
-    router.push('/chat')
-  } else {
-    error.value = '学号或密码错误'
+  try {
+    const result = await authAPI.login(form.username, form.password)
+    
+    if (result.code === 200) {
+      // 保存用户信息到 localStorage（包含密码，用于后续爬虫调用）
+      localStorage.setItem('user', JSON.stringify({
+        id: result.data.id,
+        username: result.data.username,
+        name: result.data.name,
+        password: form.password  // 保存密码
+      }))
+      
+      // 如果勾选了记住我，保存用户名
+      if (rememberMe.value) {
+        localStorage.setItem('rememberedUser', form.username)
+      } else {
+        localStorage.removeItem('rememberedUser')
+      }
+      
+      // 跳转到聊天页面
+      router.push('/chat')
+    } else {
+      error.value = result.message || '登录失败'
+    }
+  } catch (err) {
+    error.value = err.message || '网络错误，请检查后端服务是否启动'
+    console.error('登录错误:', err)
+  } finally {
+    loading.value = false
   }
+}
+
+// 自动填充记住的用户名
+const rememberedUser = localStorage.getItem('rememberedUser')
+if (rememberedUser) {
+  form.username = rememberedUser
+  rememberMe.value = true
 }
 </script>

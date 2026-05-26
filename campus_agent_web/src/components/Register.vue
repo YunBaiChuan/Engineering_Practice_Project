@@ -31,24 +31,6 @@
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">邮箱</label>
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-            </div>
-            <input
-              v-model="form.email"
-              type="email"
-              placeholder="请输入邮箱"
-              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 outline-none"
-              required
-            />
-          </div>
-        </div>
-
-        <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">密码</label>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -163,11 +145,11 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { authAPI } from '../api/auth'
 
 const router = useRouter()
 const form = reactive({
   username: '',
-  email: '',
   password: '',
   confirmPassword: '',
   agreeTerms: false
@@ -180,6 +162,12 @@ const error = ref('')
 const handleRegister = async () => {
   error.value = ''
   
+  // 前端验证
+  if (!form.username.trim()) {
+    error.value = '请输入学号'
+    return
+  }
+  
   if (form.password !== form.confirmPassword) {
     error.value = '两次输入的密码不一致'
     return
@@ -190,27 +178,29 @@ const handleRegister = async () => {
     return
   }
   
-  const registeredUsers = JSON.parse(localStorage.getItem('users') || '[]')
-  const existingUserByUsername = registeredUsers.find(u => u.username === form.username)
-  
-  if (existingUserByUsername) {
-    error.value = '该学号已被注册'
+  if (!form.agreeTerms) {
+    error.value = '请同意服务条款和隐私政策'
     return
   }
   
-  const newUser = {
-    id: Date.now(),
-    username: form.username,
-    email: form.email,
-    password: form.password
-  }
-  
-  registeredUsers.push(newUser)
-  localStorage.setItem('users', JSON.stringify(registeredUsers))
-  
   loading.value = true
-  await new Promise(resolve => setTimeout(resolve, 1000))
   
-  router.push('/')
+  try {
+    // 调用后端注册API（不传邮箱）
+    const result = await authAPI.register(form.username, form.password, form.username)
+    
+    if (result.code === 200) {
+      // 注册成功，跳转到登录页
+      alert('注册成功！请登录')
+      router.push('/')
+    } else {
+      error.value = result.message || '注册失败'
+    }
+  } catch (err) {
+    console.error('注册错误:', err)
+    error.value = err.message || '网络错误，请检查后端服务是否启动'
+  } finally {
+    loading.value = false
+  }
 }
 </script>
