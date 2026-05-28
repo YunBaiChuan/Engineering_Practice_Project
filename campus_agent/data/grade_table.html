@@ -1,0 +1,176 @@
+ 
+<div class="grid">
+
+
+<table id="grid13288472251" class="gridtable">
+<thead class="gridhead">
+
+
+<tr>
+<th  width="10%" >学年学期</th>
+<th  width="10%" >课程代码</th>
+<th  width="10%" >课程序号</th>
+<th  width="20%" >课程名称</th>
+<th  width="14%" >课程类别</th>
+<th  width="6%" >学分</th>
+<th  width="6%" >平时成绩</th>
+<th  width="6%" >期末成绩</th>
+<th  width="6%" >总评成绩</th>
+<th  width="6%" >最终</th>
+<th  width="6%" >绩点</th>
+</tr>
+
+</thead>
+
+<tbody id="grid13288472251_data"><tr>    <td>2025-2026 1</td>
+    <td>MA011A</td>
+    <td>MA011A.251053</td>
+<td>习近平新时代中国特色社会主义思想概论    
+    </td>
+<td>思想政治类</td>    <td>3</td>
+<td style="">          98 
+</td><td style="">          72 
+</td><td style="">          85 
+</td><td style="">          85
+</td><td>      3.5
+</td>    
+</tr><tr>    <td>2025-2026 1</td>
+    <td>CS1046A</td>
+    <td>CS1046A.251001</td>
+<td>深度学习基础    
+    </td>
+<td>专业必修</td>    <td>3</td>
+<td style="">          72 
+</td><td style="">          91 
+</td><td style="">          83 
+</td><td style="">          83
+</td><td>      3.3
+</td>    
+</tr><tr>    <td>2025-2026 1</td>
+    <td>MS020A</td>
+    <td>MS020A.251013</td>
+<td>离散数学    
+    </td>
+<td>数理基础类</td>    <td>3</td>
+<td style="">          93 
+</td><td style="">          92 
+</td><td style="">          92 
+</td><td style="">          92
+</td><td>      4.2
+</td>    
+</tr><tr>    <td>2025-2026 1</td>
+    <td>MA009A</td>
+    <td>MA009A.251053</td>
+<td>形势与政策4    
+    </td>
+<td>思想政治类</td>    <td>0.5</td>
+<td style="">          95 
+</td><td style="">          86 
+</td><td style="">          89 
+</td><td style="">          89
+</td><td>      3.9
+</td>    
+</tr><tr>    <td>2025-2026 1</td>
+    <td>CS738A2020</td>
+    <td>CS738A2020.251001</td>
+<td>Hadoop大数据技术    
+    </td>
+<td>专业选修</td>    <td>2</td>
+<td style="">          95 
+</td><td style="">          90 
+</td><td style="">          92 
+</td><td style="">          92
+</td><td>      4.2
+</td>    
+</tr><tr>    <td>2025-2026 1</td>
+    <td>CS704A2020</td>
+    <td>CS704A2020.251001</td>
+<td>Web前端编程    
+    </td>
+<td>专业选修</td>    <td>2</td>
+<td style="">          87 
+</td><td style="">          86 
+</td><td style="">          86 
+</td><td style="">          86
+</td><td>      3.6
+</td>    
+</tr><tr>    <td>2025-2026 1</td>
+    <td>CS1017A2022</td>
+    <td>CS1017A2022.251001</td>
+<td>工程实践3    
+    </td>
+<td>专业必修</td>    <td>1.5</td>
+<td style="">          80 
+</td><td style="">          85 
+</td><td style="">          83 
+</td><td style="">          83
+</td><td>      3.3
+</td>    
+</tr><tr>    <td>2025-2026 1</td>
+    <td>SP005A</td>
+    <td>SP005A.251049</td>
+<td>体育5    <sup style="color:#445FC2">篮球</sup>
+    </td>
+<td>军事体育类</td>    <td>0.5</td>
+<td style="">          87 
+</td><td style="">          80 
+</td><td style="">          84 
+</td><td style="">          84
+</td><td>      3.4
+</td>    
+</tr><tr>    <td>2025-2026 1</td>
+    <td>CS739A2020</td>
+    <td>CS739A2020.251001</td>
+<td>Spark大数据技术    
+    </td>
+<td>专业选修</td>    <td>2</td>
+<td style="">          85 
+</td><td style="">          79 
+</td><td style="">          81 
+</td><td style="">          81
+</td><td>      3.1
+</td>    
+</tr><tr>    <td>2025-2026 1</td>
+    <td>CS1010A</td>
+    <td>CS1010A.251001</td>
+<td>数字图像处理    
+    </td>
+<td>专业必修</td>    <td>3</td>
+<td style="">          84 
+</td><td style="">          91 
+</td><td style="">          88 
+</td><td style="">          88
+</td><td>      3.8
+</td>    
+</tr></tbody>
+</table>
+</div>
+<script type="text/javascript">
+  var clearCheckbox_grid13288472251 = function() {
+    jQuery("#grid13288472251").find(".box:checkbox").removeProp("checked");
+    jQuery("#grid13288472251").find(".gridselect-top :checkbox").removeProp("checked");
+    return true;
+  }
+  
+  page_grid13288472251 = bg.page("/eams/teach/grade/course/person!search.action","");
+  {
+    var _paramstring = 'semesterId=906&projectType=';
+    var _params = _paramstring.split('&');
+    for (var i = 0; i < _params.length; i++) {
+      _params[i] = decodeURIComponent(_params[i]);
+    }
+    _paramstring = _params.join('&');
+    page_grid13288472251.target("",'grid13288472251').action("/eams/teach/grade/course/person!search.action").addParams(_paramstring).orderBy("null");
+  }
+  bg.ui.grid.init('grid13288472251',page_grid13288472251);
+  
+  jQuery(function(){
+  	jQuery(".pgbar-input").change(function(){
+  		jQuery(".pgbar-go").eq(0).click();
+  	});
+  	jQuery(".pgbar-selbox").change(function(){
+  		jQuery(".pgbar-go").eq(0).click();
+  	});
+  });
+</script>
+
