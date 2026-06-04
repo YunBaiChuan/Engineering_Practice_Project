@@ -10,6 +10,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from campus_crawler.crawler.cuit_crawler import CUITCrawler
 from campus_crawler.crawler.parse_course_table import parse_course_table
 from campus_crawler.crawler.parse_grade_table import parse_grade_table
+from campus_crawler.crawler.parse_exam_table import parse_exam_table
 from utils.week_utils import get_current_week, SEMESTER_START
 
 # ==================== 全局爬虫实例管理 ====================
@@ -231,6 +232,51 @@ def fetch_live_current_course(username: str, password: str, campus: Optional[str
         
     except Exception as e:
         return f"❌ 获取实时课程失败：{str(e)}"
+
+@tool
+def fetch_live_exams(username: str, password: str) -> str:
+    """
+    【优先使用】实时从教务系统获取考试安排。
+    """
+    try:
+        crawler = get_crawler(username, password)
+        html = crawler.get_exam_table()
+        result = parse_exam_table(html)
+        
+        exams = result.get('exams', [])
+        stats = result.get('stats', {})
+        
+        if not exams:
+            return "暂无考试安排数据"
+        
+        lines = [
+            "📋 考试安排",
+            "=" * 30,
+            f"📚 总考试数：{stats.get('total_exams', 0)}",
+            f"✅ 已安排：{stats.get('scheduled_exams', 0)}",
+            f"⏳ 未安排：{stats.get('unscheduled_exams', 0)}",
+            "",
+            "📅 考试明细："
+        ]
+        
+        for exam in exams:
+            # 处理日期和时间的显示
+            exam_date = exam['exam_date'] if exam['exam_date'] and exam['exam_date'] != '待定' else '待定'
+            exam_time = exam['exam_time'] if exam['exam_time'] and exam['exam_time'] != '待定' else '待定'
+            exam_location = exam['exam_location'] if exam['exam_location'] and exam['exam_location'] != '待定' else '待定'
+            
+            # 判断是否为已安排的考试
+            is_scheduled = exam_date != '待定' and exam_time != '待定'
+            status_icon = "✅" if is_scheduled else "⏳"
+            
+            lines.append(f"  {status_icon} {exam['course_name']}")
+            lines.append(f"     类型：{exam['exam_type']} | 日期：{exam_date} | 时间：{exam_time} | 地点：{exam_location}")
+            lines.append("")  # 添加空行分隔
+        
+        return "\n".join(lines)
+        
+    except Exception as e:
+        return f"❌ 获取考试安排失败：{str(e)}"
 
 # ==================== 原有工具（基于本地文件，作为备用） ====================
 # 获取data目录路径
@@ -516,7 +562,7 @@ def query_current_course(campus: Optional[str] = None) -> str:
 local_tools = [query_schedule, query_grades, query_course_list, query_current_week, query_current_course, query_current_time]
 
 # 实时爬虫工具（需要登录）
-live_tools = [fetch_live_courses, fetch_live_grades, fetch_live_current_course]
+live_tools = [fetch_live_courses, fetch_live_grades, fetch_live_current_course, fetch_live_exams]
 
 # 合并所有工具
 tools = local_tools + live_tools

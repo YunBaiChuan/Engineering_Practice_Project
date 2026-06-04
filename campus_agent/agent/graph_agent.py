@@ -7,7 +7,7 @@ from typing import AsyncGenerator, List, Dict, Any
 import json
 from datetime import datetime, timedelta
 
-from agent.tools import tools, tools_by_name, fetch_live_courses, fetch_live_grades, fetch_live_current_course
+from agent.tools import tools, tools_by_name, fetch_live_courses, fetch_live_grades, fetch_live_current_course, fetch_live_exams
 from agent.memory import get_memory
 
 load_dotenv()
@@ -261,7 +261,19 @@ def detect_intent_and_call_tool(message: str, user_info: Dict = None) -> tuple:
         except Exception as e:
             return True, f"❌ 获取当前课程失败：{str(e)}"
     
-    # ==================== 7. 时间/周次查询 ====================
+    # ==================== 7. 考试安排查询 ====================
+    exam_keywords = ['考试', '期末', '考试安排', '什么时候考试', '考试时间', '考试地点', '在哪考试']
+    if any(kw in msg_lower for kw in exam_keywords):
+        try:
+            result = fetch_live_exams.invoke({
+                'username': username,
+                'password': password
+            })
+            return True, result
+        except Exception as e:
+            return True, f"❌ 获取考试安排失败：{str(e)}"
+    
+    # ==================== 8. 时间/周次查询 ====================
     if '第几周' in msg_lower or '当前周' in msg_lower:
         from utils.week_utils import get_current_week, SEMESTER_START
         week_num = get_current_week()
@@ -275,6 +287,7 @@ def detect_intent_and_call_tool(message: str, user_info: Dict = None) -> tuple:
         return True, f"现在是 {now.strftime('%Y年%m月%d日 %H:%M:%S')}，{weekday_cn}"
     
     return False, None
+
 
 # ========== 流式对话接口（支持工具调用和记忆） ==========
 async def stream_chat(message: str, history: List[Dict] = None, user_info: Dict = None) -> AsyncGenerator[str, None]:
