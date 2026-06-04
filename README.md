@@ -2,14 +2,14 @@
 
 工程实践项目《校园信息智能查询智能体》
 
-主要是利用爬虫 + 智能体 + Vue技术栈，在网页端发送给智能体自己的校园账户及密码，实现以下功能：1.自动登录cuit的教务系统；2.在教务系统中查询成绩；3.在教务系统中查询课表；4.在教务系统中查询教室，最终返回给用户相应的查询信息
+主要是利用爬虫 + LangGraph智能体 + Vue3的技术栈。实现在登录页面中输入自己的校园账户和密码后，智能体能够从数据库获取到用户输入的校园账号及密码，并且实现以下功能：1.自动登录cuit的教务系统；2.在登陆的状态下，爬取课表，并且返回查询的课表；3.在登陆的状态下，爬取成绩表，并且返回查询的成绩表；4.在登陆的状态下，爬取考试安排表，并且返回查询的考试安排表
 
 主要包含以下文件：  
-1.前端文件 campus_agent_web：采用Vue搭建，主要包含以下页面：注册、登录、智能体对话
+1.前端文件 campus_agent_web：基于Vue3搭建，主要包含以下页面：注册、登录、智能体对话
 
-2.后端文件 campus_agent：采用Python搭建，主要包含以下api：智能体功能实现api、前端功能实现api、数据库功能实现api
+2.后端文件 campus_agent：基于爬虫、FastAPI、LangGraph、LangChain搭建，主要包含以下api：智能体功能实现api、前端功能实现api、数据库功能实现api
 
-3.数据库文件 campus_agent_db：采用Mysql构建，主要包含一张表：用户表users
+3.数据库文件 campus_agent_db：基于Mysql搭建，主要包含一张表：用户表users
 
 ## 前端页面演示：
 
@@ -20,7 +20,7 @@
 <img width="1919" height="919" alt="image" src="https://github.com/user-attachments/assets/457a85ea-f551-4329-8ec7-c4fec7faca7d" />
 
 智能体对话页面：
-<img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/7f8a3635-cfb2-4a9a-9a73-bee2b96fd784" />
+<img width="1919" height="918" alt="image" src="https://github.com/user-attachments/assets/3403ec6f-ae0f-49db-9b64-1831a315face" />
 
 ## 具体效果演示：
 
@@ -38,3 +38,6 @@
 
 智能体对话演示3：成绩查询
 <img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/27b76170-c55d-419a-9959-e219a4ae7a00" />
+
+智能体对话演示4：考试查询
+<img width="1919" height="915" alt="image" src="https://github.com/user-attachments/assets/beb30100-df0e-4361-8c22-92c77208db64" />
