@@ -144,10 +144,8 @@ class CUITCrawler:
 
     def get_grade_table(self, semester_id=None):
         """获取成绩表（在已登录状态下）"""
-        # 如果没有指定学期ID，使用默认的906
         semester_id = semester_id or '906'
         
-        # 先访问成绩查询入口页（确保会话有效）
         entry_url = f"{self.jwgl_url}/teach/grade/course/person!search.action"
         entry_params = {
             'semesterId': semester_id,
@@ -160,17 +158,14 @@ class CUITCrawler:
         print(f"成绩入口页URL: {entry_resp.url}")
         print(f"成绩入口页长度: {len(entry_resp.text)}")
         
-        # 如果被重定向，说明 Cookie 问题
         if 'login' in entry_resp.url or 'authserver' in entry_resp.url:
             print("❌ Cookie失效，被重定向到登录页")
             return entry_resp.text
         
-        # 检查是否直接包含成绩数据
         if 'gridtable' in entry_resp.text and '总评成绩' in entry_resp.text:
             print("✅ 入口页包含成绩数据")
             return entry_resp.text
         
-        # 从入口页提取 grid 参数
         soup = BeautifulSoup(entry_resp.text, 'html.parser')
         
         grid_params = {}
@@ -185,7 +180,6 @@ class CUITCrawler:
                         grid_params[k] = v
                 break
         
-        # GET 获取成绩数据
         url = f"{self.jwgl_url}/teach/grade/course/person!search.action"
         params = {
             'semesterId': semester_id,
@@ -205,9 +199,78 @@ class CUITCrawler:
         print(f"成绩URL: {resp.url}")
         print(f"成绩长度: {len(resp.text)}")
         
-        # 检查内容
         if 'gridtable' in resp.text:
             print("✅ 包含成绩列表")
+        elif 'error' in resp.text.lower():
+            print("❌ 包含错误信息")
+        else:
+            print(f"内容片段: {resp.text[:500]}")
+        
+        return resp.text
+
+    def get_exam_table(self, exam_batch_id='5228'):
+        """
+        获取考试安排表（在已登录状态下）
+        
+        Args:
+            exam_batch_id: 考试批次ID，默认5228（根据实际页面获取）
+        
+        Returns:
+            考试安排的HTML内容
+        """
+        # 先访问入口页获取参数
+        entry_url = f"{self.jwgl_url}/stdExamTable!examTable.action"
+        entry_params = {
+            'examBatch.id': exam_batch_id
+        }
+        
+        entry_resp = self.session.get(entry_url, params=entry_params, allow_redirects=True)
+        print(f"考试入口页状态码: {entry_resp.status_code}")
+        print(f"考试入口页URL: {entry_resp.url}")
+        print(f"考试入口页长度: {len(entry_resp.text)}")
+        
+        if 'login' in entry_resp.url or 'authserver' in entry_resp.url:
+            print("❌ Cookie失效，被重定向到登录页")
+            return entry_resp.text
+        
+        # 从返回的HTML中提取grid参数
+        soup = BeautifulSoup(entry_resp.text, 'html.parser')
+        
+        # 提取grid参数（从JavaScript中）
+        grid_params = {}
+        for script in soup.find_all('script'):
+            text = script.string or ''
+            # 查找 _paramstring 变量
+            match = re.search(r"_paramstring\s*=\s*'([^']+)'", text)
+            if match:
+                param_string = match.group(1)
+                for param in param_string.split('&'):
+                    if '=' in param:
+                        k, v = param.split('=', 1)
+                        grid_params[k] = v
+                break
+        
+        # 如果有参数，直接请求数据接口
+        url = f"{self.jwgl_url}/stdExamTable!examTable.action"
+        params = {
+            'examBatch.id': exam_batch_id,
+            '_': str(int(time.time() * 1000))
+        }
+        params.update(grid_params)
+        
+        headers = {
+            'Referer': entry_url,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'text/html, */*; q=0.01'
+        }
+        
+        resp = self.session.get(url, params=params, headers=headers, allow_redirects=True)
+        print(f"考试状态码: {resp.status_code}")
+        print(f"考试URL: {resp.url}")
+        print(f"考试长度: {len(resp.text)}")
+        
+        if 'gridtable' in resp.text:
+            print("✅ 包含考试列表")
         elif 'error' in resp.text.lower():
             print("❌ 包含错误信息")
         else:
@@ -233,65 +296,26 @@ if __name__ == "__main__":
     print("=" * 100)
     print()
     
-    # 先登录
     if status:
-
-        # 测试爬取课表并解析
+        # 测试爬取课表
         html = cuitCrawler.get_course_table()
-        
         with open('course_table.html', 'w', encoding='utf-8') as f:
             f.write(html)
         print(f"\n课表已保存，长度: {len(html)}")
         
-        # 解析
-        try:
-            from crawler.parse_course_table import parse_course_table
-            result = parse_course_table(html)
-            
-            print(f"\n解析到 {len(result['courses'])} 门课程：")
-            for c in result['courses']:
-                print(f"  {c['seq']}. {c['name']} | 教师: {c['teacher']} | 班级: {c['class_name']}")
-            
-            print(f"\n详细安排: {len(result['schedule'])} 条")
-            for s in result['schedule']:
-                print(f"  {s['course_name']} | {s['day']} 第{s['section']}节 | 教室: {s['room']} | 周次: {s['weeks_text']}")
-                
-        except Exception as e:
-            print(f"解析出错: {e}")
-            import traceback
-            traceback.print_exc()
-        
-        print()
-        print("=" * 100)
-        print()
-
-        # 测试爬取成绩及解析
+        # 测试爬取成绩
         html = cuitCrawler.get_grade_table()
-        
         with open('grade_table.html', 'w', encoding='utf-8') as f:
             f.write(html)
         print(f"\n成绩已保存，长度: {len(html)}")
-
-        try:
-            from crawler.parse_grade_table import parse_grade_table
-            result = parse_grade_table(html)
-
-            print(f"课程数量: {len(result['courses'])}")
-            print(f"总学分: {result['stats']['total_credits']}")
-            print(f"平均绩点: {result['stats']['avg_gpa']}")
-            print(f"平均分: {result['stats']['avg_score']}")
-
-            print("\n成绩明细:")
-            print("-" * 95)
-            for c in result['courses']:
-                print(f"{c['course_name']:<24} | 学分: {c['credit']:>4} | 平时: {c['regular_score']:>3} | 期末: {c['final_score']:>3} | 总评: {c['total_score']:>3} | 绩点: {c['gpa']}")
-
-            print("\n按类别统计:")
-            print("-" * 55)
-            for cat, data in result['stats']['category_stats'].items():
-                print(f"{cat:<12} | 课程数: {data['courses']:>2} | 学分: {data['total_credits']:>5} | 平均绩点: {data['avg_gpa']}")
         
-        except Exception as e:
-            print(f"解析出错: {e}")
-            import traceback
-            traceback.print_exc()
+        # 测试爬取考试安排
+        print()
+        print("=" * 100)
+        print("开始爬取考试安排")
+        print("=" * 100)
+        
+        exam_html = cuitCrawler.get_exam_table(exam_batch_id='5228')
+        with open('exam_table.html', 'w', encoding='utf-8') as f:
+            f.write(exam_html)
+        print(f"\n考试安排已保存，长度: {len(exam_html)}")
