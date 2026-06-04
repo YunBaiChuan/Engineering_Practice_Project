@@ -1,0 +1,109 @@
+
+ 
+<div class="grid">
+
+
+<table id="grid20849723541" class="gridtable">
+<thead class="gridhead">
+
+
+<tr>
+<th  width="10%" >课程序号</th>
+<th  width="23%" >课程名称</th>
+<th  width="8%" >考试类别</th>
+<th  width="11%" >考试日期</th>
+<th  width="13%" >考试时间</th>
+<th  width="8%" >考试地点</th>
+<th  width="8%" >学分</th>
+<th  width="8%" >考试状态</th>
+<th  width="8%" >备注</th>
+</tr>
+
+</thead>
+
+<tbody id="grid20849723541_data"><tr><td>CS008D2022.252001</td><td>面向对象程序设计(JAVA)</td><td>期末考试</td>		<td>2026-06-15</td>
+		<td>19:00~21:00</td>
+		<td><a href="/eams/stdExamTable!downloadExamroomSeat.action?examRoom.id=63164" target="_blank">H1107</a></td>
+<td>3</td><td>正常</td><td>			
+			
+</td></tr><tr><td>CS1013A.252001</td><td>机器视觉技术</td><td>期末考试</td>		<td>2026-06-11</td>
+		<td>19:00~21:00</td>
+		<td><a href="/eams/stdExamTable!downloadExamroomSeat.action?examRoom.id=62347" target="_blank">H1104</a></td>
+<td>3</td><td>正常</td><td>			
+			
+</td></tr><tr><td>CS1014A2022.252001</td><td>视觉识别系统综合实践</td><td>期末考试</td>		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">地点未安排</font></td>
+<td>3</td><td>正常</td><td>			
+			
+</td></tr><tr><td>CS1018A2022.252001</td><td>工程实践4</td><td>期末考试</td>		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">地点未安排</font></td>
+<td>1.5</td><td>正常</td><td>			
+			
+</td></tr><tr><td>CS705A2020.252003</td><td>Web应用开发(Java)</td><td>期末考试</td>		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">地点未安排</font></td>
+<td>3</td><td>正常</td><td>			
+			
+</td></tr><tr><td>OT007A.252007</td><td>就业指导</td><td>期末考试</td>		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">地点未安排</font></td>
+<td>0.5</td><td>正常</td><td>			
+			
+</td></tr><tr><td>OT012A.252093</td><td>劳动教育实践</td><td>期末考试</td>		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">地点未安排</font></td>
+<td>0.5</td><td>正常</td><td>			
+			
+</td></tr><tr><td>SP006A.252052</td><td>体育6			 <sup style="color:#333fff;">篮球</sup>
+</td><td>期末考试</td>		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">时间未安排</font></td>
+		<td><font color="BBC4C3">地点未安排</font></td>
+<td>0.5</td><td>正常</td><td>			
+			
+</td></tr></tbody>
+</table>
+</div>
+<script type="text/javascript">
+  var clearCheckbox_grid20849723541 = function() {
+    jQuery("#grid20849723541").find(".box:checkbox").removeProp("checked");
+    jQuery("#grid20849723541").find(".gridselect-top :checkbox").removeProp("checked");
+    return true;
+  }
+  
+  page_grid20849723541 = bg.page("/eams/stdExamTable!examTable.action","");
+  {
+    var _paramstring = 'examBatch.id=5228&_=1780544187324';
+    var _params = _paramstring.split('&');
+    for (var i = 0; i < _params.length; i++) {
+      _params[i] = decodeURIComponent(_params[i]);
+    }
+    _paramstring = _params.join('&');
+    page_grid20849723541.target("",'grid20849723541').action("/eams/stdExamTable!examTable.action").addParams(_paramstring).orderBy("null");
+  }
+  bg.ui.grid.init('grid20849723541',page_grid20849723541);
+  
+  jQuery(function(){
+  	jQuery(".pgbar-input").change(function(){
+  		jQuery(".pgbar-go").eq(0).click();
+  	});
+  	jQuery(".pgbar-selbox").change(function(){
+  		jQuery(".pgbar-go").eq(0).click();
+  	});
+  });
+</script>
+
+<script>
+		jQuery(function() {
+			try{
+				var selectTitle = jQuery(jQuery(".current")[1]).children().html()
+				if(selectTitle != undefined) {
+				    jQuery(jQuery(".toolbar-title")[0]).children().next().html(selectTitle);
+				}else{
+				  jQuery(jQuery(".toolbar-title")[0]).children().next().html(jQuery(jQuery(".current")[1]).children().html());;
+				}
+			}catch(e){
+			}
+		});
+</script>
