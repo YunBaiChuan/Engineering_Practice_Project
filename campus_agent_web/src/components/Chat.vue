@@ -380,7 +380,7 @@ const deleteChat = (chatId) => {
 
 const startNewChat = () => {
   if (!currentUser.value) { router.push('/'); return }
-  const greetingContent = `你好，同学！👋\n\n我是你的校园智能助手，可以帮你：\n\n📚 **查课表** — 问"今天有什么课"、"明天有课吗"\n📊 **查成绩** — 问"我的成绩怎么样"\n⏰ **查时间** — 问"现在第几周"\n\n试试问我吧！有什么需要帮忙的吗？`
+  const greetingContent = `你好，同学！👋\n\n我是你的校园智能助手，可以帮你：\n\n📚 **查课表** — “今天有什么课”、“明天有课吗”\n📊 **查成绩** — “我的成绩怎么样”\n📅 **查考试** — “考试安排”、“什么时候考试”\n⏰ **查时间** — “现在第几周”\n\n试试问我吧！有什么需要帮忙的吗？`
   messages.value = [{ content: greetingContent, isUser: false, time: getTime(), renderedHtml: renderMarkdown(greetingContent) }]
   activeChatId.value = Date.now().toString()
   showSidebar.value = false
