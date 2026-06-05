@@ -40,4 +40,4 @@
 <img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/27b76170-c55d-419a-9959-e219a4ae7a00" />
 
 智能体对话演示4：考试查询
-<img width="1919" height="915" alt="image" src="https://github.com/user-attachments/assets/beb30100-df0e-4361-8c22-92c77208db64" />
+<img width="1919" height="918" alt="image" src="https://github.com/user-attachments/assets/fd1841a8-048b-487e-a223-aa23a9d3667d" />
