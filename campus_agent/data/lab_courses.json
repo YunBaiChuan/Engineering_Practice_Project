@@ -1,0 +1,233 @@
+{
+  "机器视觉技术": {
+    "course_name": "机器视觉技术",
+    "lab_sessions": [
+      {
+        "weekday": "周一",
+        "section": 10,
+        "time": "19:30-20:15",
+        "room": "H6610",
+        "weeks": "3-10"
+      },
+      {
+        "weekday": "周一",
+        "section": 11,
+        "time": "20:25-21:10",
+        "room": "H6610",
+        "weeks": "3-10"
+      }
+    ]
+  },
+  "视觉识别系统综合实践": {
+    "course_name": "视觉识别系统综合实践",
+    "lab_sessions": [
+      {
+        "weekday": "周一",
+        "section": 1,
+        "time": "08:20-09:05",
+        "room": "H6610",
+        "weeks": "7-9"
+      },
+      {
+        "weekday": "周一",
+        "section": 2,
+        "time": "09:15-10:00",
+        "room": "H6610",
+        "weeks": "7-9"
+      },
+      {
+        "weekday": "周一",
+        "section": 7,
+        "time": "15:50-16:35",
+        "room": "H6610",
+        "weeks": "7-9"
+      },
+      {
+        "weekday": "周一",
+        "section": 8,
+        "time": "16:45-17:30",
+        "room": "H6610",
+        "weeks": "7-9"
+      },
+      {
+        "weekday": "周一",
+        "section": 5,
+        "time": "14:00-14:45",
+        "room": "H6610",
+        "weeks": "10-18"
+      },
+      {
+        "weekday": "周一",
+        "section": 6,
+        "time": "14:55-15:40",
+        "room": "H6610",
+        "weeks": "10-18"
+      },
+      {
+        "weekday": "周一",
+        "section": 7,
+        "time": "15:50-16:35",
+        "room": "H6610",
+        "weeks": "10-18"
+      },
+      {
+        "weekday": "周一",
+        "section": 8,
+        "time": "16:45-17:30",
+        "room": "H6610",
+        "weeks": "10-18"
+      }
+    ]
+  },
+  "面向对象程序设计(JAVA)": {
+    "course_name": "面向对象程序设计(JAVA)",
+    "lab_sessions": [
+      {
+        "weekday": "周二",
+        "section": 10,
+        "time": "19:30-20:15",
+        "room": "H6609",
+        "weeks": "5-6"
+      },
+      {
+        "weekday": "周二",
+        "section": 11,
+        "time": "20:25-21:10",
+        "room": "H6609",
+        "weeks": "5-6"
+      },
+      {
+        "weekday": "周二",
+        "section": 9,
+        "time": "17:40-18:25",
+        "room": "H6609",
+        "weeks": "7-9"
+      },
+      {
+        "weekday": "周二",
+        "section": 10,
+        "time": "19:30-20:15",
+        "room": "H6609",
+        "weeks": "7-9"
+      },
+      {
+        "weekday": "周二",
+        "section": 11,
+        "time": "20:25-21:10",
+        "room": "H6609",
+        "weeks": "7-9"
+      },
+      {
+        "weekday": "周二",
+        "section": 12,
+        "time": "21:20-22:05",
+        "room": "H6609",
+        "weeks": "7-9"
+      }
+    ]
+  },
+  "工程实践4": {
+    "course_name": "工程实践4",
+    "lab_sessions": [
+      {
+        "weekday": "周四",
+        "section": 3,
+        "time": "10:20-11:05",
+        "room": "H6610",
+        "weeks": "11-16"
+      },
+      {
+        "weekday": "周四",
+        "section": 4,
+        "time": "11:15-12:00",
+        "room": "H6610",
+        "weeks": "11-16"
+      },
+      {
+        "weekday": "周五",
+        "section": 3,
+        "time": "10:20-11:05",
+        "room": "H6610",
+        "weeks": "11-16"
+      },
+      {
+        "weekday": "周五",
+        "section": 4,
+        "time": "11:15-12:00",
+        "room": "H6610",
+        "weeks": "11-16"
+      }
+    ]
+  },
+  "高级深度学习": {
+    "course_name": "高级深度学习",
+    "lab_sessions": [
+      {
+        "weekday": "周三",
+        "section": 10,
+        "time": "19:30-20:15",
+        "room": "H6610",
+        "weeks": "6-11"
+      },
+      {
+        "weekday": "周三",
+        "section": 11,
+        "time": "20:25-21:10",
+        "room": "H6610",
+        "weeks": "6-11"
+      }
+    ]
+  },
+  "区块链技术及应用": {
+    "course_name": "区块链技术及应用",
+    "lab_sessions": [
+      {
+        "weekday": "周五",
+        "section": 5,
+        "time": "14:00-14:45",
+        "room": "H6609",
+        "weeks": "7-11"
+      },
+      {
+        "weekday": "周五",
+        "section": 6,
+        "time": "14:55-15:40",
+        "room": "H6609",
+        "weeks": "7-11"
+      }
+    ]
+  },
+  "信息可视化技术": {
+    "course_name": "信息可视化技术",
+    "lab_sessions": [
+      {
+        "weekday": "周二",
+        "section": 5,
+        "time": "14:00-14:45",
+        "room": "H6610",
+        "weeks": "6-10"
+      },
+      {
+        "weekday": "周二",
+        "section": 6,
+        "time": "14:55-15:40",
+        "room": "H6610",
+        "weeks": "6-10"
+      },
+{
+        "weekday": "周一",
+        "section": 10,
+        "time": "19:30-20:15",
+        "room": "H6610",
+        "weeks": "12"
+      },
+      {
+        "weekday": "周一",
+        "section": 11,
+        "time": "20:25-21:10",
+        "room": "H6610",
+        "weeks": "12"
+      }
+    ]
+  }
+}
