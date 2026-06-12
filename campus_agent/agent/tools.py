@@ -1,4 +1,5 @@
 import os
+import json
 from datetime import datetime, date
 from typing import Optional
 from langchain_core.tools import tool
@@ -27,17 +28,34 @@ def get_crawler(username: str = None, password: str = None):
         return _crawler_sessions[username]
     else:
         return CUITCrawler()
+    
+# ==================== 加载实验课数据 ====================
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
+
+def load_lab_courses():
+    """加载离线实验课数据"""
+    lab_file = os.path.join(DATA_DIR, 'lab_courses.json')
+    if os.path.exists(lab_file):
+        with open(lab_file, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
 
 # ==================== 实时爬虫工具（需要登录） ====================
 @tool
 def fetch_live_courses(username: str, password: str, weekday: Optional[str] = None) -> str:
     """
-    【优先使用】实时从教务系统获取课表数据。
+    【优先使用】实时从教务系统获取课表数据，并合并离线实验课。
     """
     try:
         crawler = get_crawler(username, password)
         html = crawler.get_course_table()
         result = parse_course_table(html)
+        
+        # 加载离线实验课
+        lab_courses = load_lab_courses()
+        
+        # 获取课程列表
+        course_list = result.get('courses', [])
         
         # 如果没有指定weekday，返回完整的课程列表
         if weekday is None:
@@ -49,6 +67,12 @@ def fetch_live_courses(username: str, password: str, weekday: Optional[str] = No
             for i, c in enumerate(courses, 1):
                 lines.append(f"{i}. {c['name']}")
                 lines.append(f"   教师：{c['teacher']} | 班级：{c['class_name']} | 学分：{c['credit']}")
+                
+                # 如果有实验课，显示提示
+                if c['name'] in lab_courses:
+                    lab_count = len(lab_courses[c['name']].get('lab_sessions', []))
+                    if lab_count > 0:
+                        lines.append(f"   🧪 含 {lab_count} 节实验课")
                 lines.append("")
             return "\n".join(lines)
         
@@ -71,14 +95,13 @@ def fetch_live_courses(username: str, password: str, weekday: Optional[str] = No
         
         current_week = get_current_week()
         filtered = [s for s in result['schedule'] if s['day'] == weekday]
-        
-        if not filtered:
-            return f"{weekday}暂无课程安排"
-        
-        # 按节次排序
         filtered.sort(key=lambda x: x['section'])
         
-        lines = [f"📅 {weekday}的课程（第{current_week}周）："]
+        # 收集课程和实验
+        course_items = []
+        lab_items = []
+        
+        # 添加在线课表
         for s in filtered:
             weeks_text = s.get('weeks_text', '')
             has_class = False
@@ -88,9 +111,53 @@ def fetch_live_courses(username: str, password: str, weekday: Optional[str] = No
                     start, end = int(parts[0]), int(parts[1])
                     has_class = start <= current_week <= end
             
-            status = "✅ 本周有课" if has_class else "⏸️ 本周无课"
+            status = "✅" if has_class else "⏸️"
             time_str = f"（{period_times.get(s['section'], '')}）" if period_times.get(s['section']) else ""
-            lines.append(f"  {s['section']}节{time_str}：{s['course_name']}，教室：{s['room']}，周次：{weeks_text} {status}")
+            course_items.append(f"  {s['section']}节{time_str}：{s['course_name']}，教室：{s['room']}，周次：{weeks_text} {status}")
+        
+        # 根据课程名称匹配实验课
+        for course in course_list:
+            course_name = course['name']
+            if course_name in lab_courses:
+                lab_data = lab_courses[course_name]
+                for lab in lab_data.get('lab_sessions', []):
+                    if lab.get('weekday') == weekday:
+                        section = lab.get('section')
+                        lab_room = lab.get('room', '')
+                        lab_weeks = lab.get('weeks', '')
+                        
+                        # 判断本周是否有实验课
+                        has_lab = False
+                        if lab_weeks and '-' in lab_weeks:
+                            parts = lab_weeks.split('-')
+                            if len(parts) == 2:
+                                start, end = int(parts[0]), int(parts[1])
+                                has_lab = start <= current_week <= end
+                        elif lab_weeks and ',' in lab_weeks:
+                            weeks_list = [int(w.strip()) for w in lab_weeks.split(',')]
+                            has_lab = current_week in weeks_list
+                        elif lab_weeks and lab_weeks.isdigit():
+                            has_lab = current_week == int(lab_weeks)
+                        
+                        lab_status = "✅" if has_lab else "⏸️"
+                        time_str = f"（{period_times.get(section, '')}）" if period_times.get(section) else ""
+                        lab_items.append(f"  {section}节{time_str}：{course_name}实验，教室：{lab_room}，周次：{lab_weeks} {lab_status}")
+        
+        # 构建输出
+        lines = [f"📅 {weekday}的课程（第{current_week}周）："]
+        
+        if course_items:
+            lines.append("")
+            lines.append("📖 课程：")
+            lines.extend(course_items)
+        
+        if lab_items:
+            lines.append("")
+            lines.append("🧪 实验：")
+            lines.extend(lab_items)
+        
+        if not course_items and not lab_items:
+            lines.append("  （无课程安排）")
         
         return "\n".join(lines)
         
