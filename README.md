@@ -34,7 +34,7 @@
 <img width="1919" height="919" alt="image" src="https://github.com/user-attachments/assets/d1db8dd8-18a4-49b0-9fb2-ea501ea0e437" />
 
 智能体对话演示2：课程及教室查询
-<img width="1919" height="918" alt="image" src="https://github.com/user-attachments/assets/63d9d008-e93b-4731-bcfa-5020526b1e0b" />
+<img width="1919" height="919" alt="image" src="https://github.com/user-attachments/assets/b4abc6b4-8a6d-42e8-a3d9-ed23a2dd7978" />
 
 智能体对话演示3：成绩查询
 <img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/27b76170-c55d-419a-9959-e219a4ae7a00" />
