@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="avatar">📝</view>
+  <text class="title">创建账户</text>
+  
+  <input class="input" placeholder="学号" bindinput="onUsernameInput" value="{{username}}" />
+  
+  <view class="input-group">
+    <input class="input" placeholder="密码" password="{{!showPassword}}" bindinput="onPasswordInput" value="{{password}}" />
+    <button class="eye-btn" bindtap="togglePassword" size="mini">
+      <text wx:if="{{showPassword}}">🔓</text>
+      <text wx:else>🔒</text>
+    </button>
+  </view>
+  
+  <view class="input-group">
+    <input class="input" placeholder="确认密码" password="{{!showConfirm}}" bindinput="onConfirmInput" value="{{confirmPassword}}" />
+    <button class="eye-btn" bindtap="toggleConfirm" size="mini">
+      <text wx:if="{{showConfirm}}">🔓</text>
+      <text wx:else>🔒</text>
+    </button>
+  </view>
+  
+  <view class="terms">
+    <checkbox value="{{agree}}" bindtap="toggleAgree" checked="{{agree}}" color="#10b981" />
+    <text class="terms-text">我同意服务条款和隐私政策</text>
+  </view>
+  
+  <button class="register-btn" bindtap="handleRegister" loading="{{loading}}">注册</button>
+  
+  <button class="login-btn" bindtap="goToLogin">已有账号？立即登录</button>
+  
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+</view>

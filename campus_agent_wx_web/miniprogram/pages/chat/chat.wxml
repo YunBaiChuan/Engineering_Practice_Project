@@ -1,0 +1,66 @@
+<view class="chat-container">
+  <!-- 头部 -->
+  <view class="chat-header">
+    <view class="header-info">
+      <view class="avatar">
+        <text>🤖</text>
+      </view>
+      <view>
+        <text class="header-title">智能体助手</text>
+        <text class="status online">在线</text>
+      </view>
+    </view>
+    <button class="logout-btn" bindtap="handleLogout" size="mini">退出</button>
+  </view>
+
+  <!-- 消息区域 -->
+  <scroll-view class="messages-area" scroll-y scroll-into-view="{{scrollIntoView}}" enhanced scroll-with-animation>
+    <view class="messages-wrapper">
+      <!-- 欢迎横幅 -->
+      <view class="welcome-banner" wx:if="{{messages.length === 0 || messages.length === 1}}">
+        <view class="welcome-icon">🤖</view>
+        <text class="welcome-text">我是您的智能助手，可以帮您查询课表、成绩等信息</text>
+      </view>
+
+      <!-- 消息列表 -->
+      <view class="message {{item.isUser ? 'user-message' : 'bot-message'}}" wx:for="{{messages}}" wx:key="index" id="msg-{{index}}">
+        <view class="message-avatar">
+          <text wx:if="{{!item.isUser}}">🤖</text>
+          <text wx:else>👤</text>
+        </view>
+        <view class="message-bubble {{item.isUser ? 'user-bubble' : 'bot-bubble'}}">
+          <rich-text wx:if="{{!item.isUser && item.richText}}" nodes="{{item.richText}}"></rich-text>
+          <text wx:else class="message-text">{{item.content}}</text>
+          <text class="message-time">{{item.time}}</text>
+        </view>
+      </view>
+
+      <!-- 打字动画 -->
+      <view wx:if="{{isTyping}}" class="message bot-message" id="msg-typing">
+        <view class="message-avatar">
+          <text>🤖</text>
+        </view>
+        <view class="message-bubble bot-bubble typing-indicator">
+          <text class="dot">•</text>
+          <text class="dot">•</text>
+          <text class="dot">•</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="chat-footer">
+    <view class="input-wrapper">
+      <input 
+        class="message-input" 
+        placeholder="输入消息..." 
+        value="{{inputMessage}}"
+        bindinput="onInput"
+        bindconfirm="sendMessage"
+        confirm-type="send"
+      />
+      <button class="send-btn" bindtap="sendMessage">发送</button>
+    </view>
+  </view>
+</view>

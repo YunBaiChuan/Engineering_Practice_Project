@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="avatar">🤖</view>
+  <text class="title">校园智能助手</text>
+  
+  <!-- 学号 -->
+  <input class="input" placeholder="学号" bindinput="onUsernameInput" value="{{username}}" />
+  
+  <!-- 密码（带眼睛图标） -->
+  <view class="password-wrapper">
+    <input class="input" placeholder="密码" password="{{!showPassword}}" bindinput="onPasswordInput" value="{{password}}" />
+    <view class="eye-icon" bindtap="togglePassword">
+      <text wx:if="{{showPassword}}">🔓</text>
+      <text wx:else>🔒</text>
+    </view>
+  </view>
+  
+  <!-- 记住我 -->
+  <view class="remember">
+    <checkbox value="{{rememberMe}}" bindtap="toggleRemember" checked="{{rememberMe}}" color="#667eea" />
+    <text class="remember-text">记住我</text>
+  </view>
+  
+  <button class="login-btn" bindtap="handleLogin" loading="{{loading}}">登 录</button>
+  
+  <button class="register-btn" bindtap="goToRegister">还没有账号？立即注册</button>
+  
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+</view>

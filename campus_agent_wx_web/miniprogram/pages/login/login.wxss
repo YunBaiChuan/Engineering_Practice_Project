@@ -1,0 +1,135 @@
+page {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 50rpx;
+}
+
+.avatar {
+  font-size: 80rpx;
+  background: white;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50rpx;
+  box-shadow: 0 10rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.title {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 80rpx;
+  letter-spacing: 2rpx;
+}
+
+.input {
+  width: 100%;
+  background: white;
+  border-radius: 50rpx;
+  padding: 0 40rpx;
+  margin-bottom: 30rpx;
+  font-size: 30rpx;
+  line-height: 90rpx;
+  height: 90rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.input::placeholder {
+  color: #bbb;
+  font-size: 30rpx;
+  line-height: 90rpx;
+}
+
+/* 密码框容器 */
+.password-wrapper {
+  width: 100%;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+
+.password-wrapper .input {
+  margin-bottom: 0;
+  padding-right: 100rpx;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40rpx;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 记住我 */
+.remember {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10rpx 0 40rpx;
+}
+
+.remember-text {
+  color: white;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+
+.login-btn {
+  width: 100%;
+  background: white;
+  color: #667eea;
+  border-radius: 50rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 50rpx;
+  border: none;
+  text-align: center;
+  padding: 0;
+}
+
+.login-btn::after {
+  border: none;
+}
+
+.register-btn {
+  background: transparent;
+  color: white;
+  border: 2rpx solid white;
+  border-radius: 50rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  margin-top: 30rpx;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+}
+
+.register-btn::after {
+  border: none;
+}
+
+.error {
+  margin-top: 30rpx;
+  color: #ffcccc;
+  font-size: 26rpx;
+  text-align: center;
+}

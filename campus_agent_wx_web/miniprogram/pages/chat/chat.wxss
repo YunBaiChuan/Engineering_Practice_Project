@@ -1,0 +1,272 @@
+.chat-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f0f2f5;
+  overflow: hidden;
+}
+
+/* 头部样式 */
+.chat-header {
+  padding: 20rpx 30rpx;
+  background: white;
+  border-bottom: 2rpx solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+}
+
+.header-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #1f2937;
+  display: block;
+}
+
+.status {
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 24rpx;
+  display: inline-block;
+  margin-top: 8rpx;
+}
+
+.status.online {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.status.offline {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.logout-btn {
+  background: #ef4444;
+  color: white;
+  font-size: 26rpx;
+  padding: 14rpx 28rpx;
+  border-radius: 40rpx;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* 消息区域 */
+.messages-area {
+  flex: 1;
+  padding: 20rpx 24rpx;
+  height: 0;
+  overflow-y: auto;
+}
+
+.messages-wrapper {
+  max-width: 800rpx;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 消息行 */
+.message {
+  display: flex;
+  margin-bottom: 28rpx;
+  width: 100%;
+}
+
+/* 用户消息：头像在右，消息在左，整体左移 */
+.user-message {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  width: auto;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: 30rpx;
+}
+
+/* 机器人消息：头像在左，消息在右 */
+.bot-message {
+  flex-direction: row;
+  justify-content: flex-start;
+  width: auto;
+  max-width: 85%;
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* 头像 */
+.message-avatar {
+  width: 70rpx;
+  height: 70rpx;
+  background: #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 36rpx;
+}
+
+.user-message .message-avatar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin-left: 16rpx;
+  margin-right: 0;
+}
+
+.bot-message .message-avatar {
+  margin-right: 16rpx;
+  margin-left: 0;
+}
+
+/* 气泡 */
+.message-bubble {
+  max-width: 65%;
+  padding: 20rpx 28rpx;
+  border-radius: 28rpx;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  line-height: 1.5;
+}
+
+.bot-bubble {
+  background: white;
+  color: #333;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+  border: 2rpx solid #e5e7eb;
+}
+
+.user-bubble {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.message-text {
+  font-size: 28rpx;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.message-time {
+  font-size: 20rpx;
+  color: #9ca3af;
+  margin-top: 12rpx;
+  display: block;
+  text-align: right;
+}
+
+.user-bubble .message-time {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 欢迎横幅 */
+.welcome-banner {
+  text-align: center;
+  margin-bottom: 40rpx;
+  padding: 48rpx 32rpx;
+  background: #f3f4f6;
+  border-radius: 32rpx;
+}
+
+.welcome-icon {
+  font-size: 64rpx;
+  margin-bottom: 20rpx;
+}
+
+.welcome-text {
+  font-size: 28rpx;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* 打字动画 */
+.typing-indicator {
+  display: flex;
+  gap: 12rpx;
+  padding: 20rpx 28rpx;
+}
+
+.typing-indicator .dot {
+  font-size: 32rpx;
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator .dot:nth-child(1) { animation-delay: 0s; }
+.typing-indicator .dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+  0%, 60%, 100% { opacity: 0.4; }
+  30% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message {
+  animation: fadeInUp 0.25s ease-out;
+}
+
+/* 输入区域 */
+.chat-footer {
+  padding: 20rpx 24rpx;
+  background: white;
+  border-top: 2rpx solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.message-input {
+  flex: 1;
+  background: #f5f5f5;
+  border: none;
+  border-radius: 48rpx;
+  padding: 22rpx 32rpx;
+  font-size: 28rpx;
+  height: 80rpx;
+  line-height: 1.2;
+}
+
+.send-btn {
+  width: 140rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 48rpx;
+  font-size: 28rpx;
+  padding: 20rpx 0;
+  margin: 0;
+  line-height: 1.2;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-btn::after {
+  border: none;
+}

@@ -1,0 +1,11 @@
+{
+  "appid": "wx21f1ea0b8a261a72",
+  "projectname": "CUIT校园信息智能查询助手",
+  "miniprogramRoot": "miniprogram/",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  }
+}
