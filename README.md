@@ -7,9 +7,11 @@
 主要包含以下文件：  
 1.前端文件 campus_agent_web：基于Vue3搭建，主要包含以下页面：注册、登录、智能体对话
 
-2.后端文件 campus_agent：基于爬虫、FastAPI、LangGraph、LangChain搭建，主要包含以下api：智能体功能实现api、前端功能实现api、数据库功能实现api
+2.前端文件 campus_agent_wx_web：基于微信小程序搭建，主要包含以下页面：注册、登录、智能体对话
 
-3.数据库文件 campus_agent_db：基于Mysql搭建，主要包含一张表：用户表users
+3.后端文件 campus_agent：基于爬虫、FastAPI、LangGraph、LangChain搭建，主要包含以下api：智能体功能实现api、前端功能实现api、数据库功能实现api
+
+4.数据库文件 campus_agent_db：基于Mysql搭建，主要包含一张表：用户表users
 
 ## 前端页面演示：
 
