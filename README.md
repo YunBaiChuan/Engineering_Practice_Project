@@ -50,7 +50,7 @@
 <img width="1080" height="2376" alt="Screenshot_20260617_151826" src="https://github.com/user-attachments/assets/0267312e-a0be-4461-9cc9-c82e859eb452" />
 
 登录页面：
-<img width="1080" height="2376" alt="Screenshot_20260617_151821" src="https://github.com/user-attachments/assets/31ea35c9-b576-4c37-9e83-8bfab8fe514a" />
+<img width="412" height="820" alt="image" src="https://github.com/user-attachments/assets/e837d07b-f1b7-4159-b4f0-c4228f10c1b3" />
 
 智能体对话页面：
 <img width="1080" height="2376" alt="Screenshot_20260617_152138" src="https://github.com/user-attachments/assets/d5f416a2-f041-40fa-b67b-828bf92acc72" />
