@@ -47,24 +47,24 @@
 ## 移动端前端页面演示：
 
 注册页面：
-<img width="1080" height="2376" alt="Screenshot_20260617_151826" src="https://github.com/user-attachments/assets/0267312e-a0be-4461-9cc9-c82e859eb452" />
+<img width="411" height="812" alt="image" src="https://github.com/user-attachments/assets/8604a780-0738-4ec3-935e-f3fadb1d6601" />
 
 登录页面：
 <img width="412" height="820" alt="image" src="https://github.com/user-attachments/assets/e837d07b-f1b7-4159-b4f0-c4228f10c1b3" />
 
 智能体对话页面：
-<img width="1080" height="2376" alt="Screenshot_20260617_152138" src="https://github.com/user-attachments/assets/d5f416a2-f041-40fa-b67b-828bf92acc72" />
+<img width="407" height="820" alt="image" src="https://github.com/user-attachments/assets/4691126d-d49b-4851-b922-9ac940f62e8a" />
 
 ## 具体效果演示：
 
 智能体对话演示1：记忆功能
-<img width="1080" height="2376" alt="Screenshot_20260617_152303" src="https://github.com/user-attachments/assets/c520f964-b523-4914-941a-11eea04a0209" />
+<img width="407" height="808" alt="image" src="https://github.com/user-attachments/assets/f38aecbc-b52f-441c-abae-c36c91a2d6ac" />
 
 智能体对话演示2：课程及教室查询
-<img width="1080" height="2376" alt="Screenshot_20260617_152532" src="https://github.com/user-attachments/assets/435ba020-c31c-4e3a-acfe-48df8ed72585" />
+<img width="411" height="816" alt="image" src="https://github.com/user-attachments/assets/477e1385-7e9e-47f2-a14e-ebf4fb6b89a7" />
 
 智能体对话演示3：成绩查询
-<img width="1080" height="2376" alt="Screenshot_20260617_152644" src="https://github.com/user-attachments/assets/e84bded4-6223-45c1-b0c9-27f7fb78f0d8" />
+<img width="407" height="813" alt="image" src="https://github.com/user-attachments/assets/048a9dc9-d0e0-4001-976a-a81bfdd12a7d" />
 
 智能体对话演示4：考试查询
-<img width="1080" height="2376" alt="Screenshot_20260617_152721" src="https://github.com/user-attachments/assets/736f23fe-9d81-4442-bd9d-4e607fca9132" />
+<img width="407" height="808" alt="image" src="https://github.com/user-attachments/assets/d11f7fa1-f694-4719-a541-a88606333cc0" />
