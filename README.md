@@ -47,13 +47,16 @@
 ## 移动端前端页面演示：
 
 注册页面：
-<img width="411" height="812" alt="image" src="https://github.com/user-attachments/assets/8604a780-0738-4ec3-935e-f3fadb1d6601" />
+
+<img width="402" height="812" alt="image" src="https://github.com/user-attachments/assets/27d9f7ac-1bc9-4111-86f0-59f0f6e2af42" />
 
 登录页面：
-<img width="412" height="820" alt="image" src="https://github.com/user-attachments/assets/e837d07b-f1b7-4159-b4f0-c4228f10c1b3" />
+
+<img width="402" height="807" alt="image" src="https://github.com/user-attachments/assets/7b89d6de-9024-4a2d-92a3-ce66d1df3b12" />
 
 智能体对话页面：
-<img width="407" height="820" alt="image" src="https://github.com/user-attachments/assets/4691126d-d49b-4851-b922-9ac940f62e8a" />
+
+<img width="402" height="808" alt="image" src="https://github.com/user-attachments/assets/9270c06a-507b-42a6-a63d-2933389ce3a1" />
 
 ## 具体效果演示：
 
