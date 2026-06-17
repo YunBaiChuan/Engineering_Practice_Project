@@ -61,13 +61,17 @@
 ## 具体效果演示：
 
 智能体对话演示1：记忆功能
+
 <img width="407" height="808" alt="image" src="https://github.com/user-attachments/assets/f38aecbc-b52f-441c-abae-c36c91a2d6ac" />
 
 智能体对话演示2：课程及教室查询
-<img width="411" height="816" alt="image" src="https://github.com/user-attachments/assets/477e1385-7e9e-47f2-a14e-ebf4fb6b89a7" />
+
+<img width="401" height="808" alt="image" src="https://github.com/user-attachments/assets/dd469daa-49ae-449b-bf93-340b4b42e0e3" />
 
 智能体对话演示3：成绩查询
+
 <img width="407" height="813" alt="image" src="https://github.com/user-attachments/assets/048a9dc9-d0e0-4001-976a-a81bfdd12a7d" />
 
 智能体对话演示4：考试查询
+
 <img width="407" height="808" alt="image" src="https://github.com/user-attachments/assets/d11f7fa1-f694-4719-a541-a88606333cc0" />
