@@ -1,5 +1,3 @@
-<img width="1080" height="2376" alt="Screenshot_20260617_152721" src="https://github.com/user-attachments/assets/7b959ad1-bf2f-43e5-a3ce-cea69d280e63" /># Engineering_Practice_Project
-
 工程实践项目《校园信息智能查询智能体》（面向CUIT）
 
 主要是利用爬虫 + LangGraph智能体 + Vue3的技术栈。实现在登录页面中输入自己的校园账户和密码后，智能体能够根据用户输入的校园账号及密码，实现以下功能：1.自动登录cuit的教务系统；2.在登陆状态下，爬取课表，并且查找相应的实验课，进行拼接，最终返回查询的课表；3.在登陆状态下，爬取成绩表，并且返回查询的成绩表；4.在登陆状态下，爬取考试安排表，并且返回查询的考试安排表
