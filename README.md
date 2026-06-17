@@ -1,4 +1,4 @@
-# Engineering_Practice_Project
+<img width="1080" height="2376" alt="Screenshot_20260617_152721" src="https://github.com/user-attachments/assets/7b959ad1-bf2f-43e5-a3ce-cea69d280e63" /># Engineering_Practice_Project
 
 工程实践项目《校园信息智能查询智能体》（面向CUIT）
 
@@ -13,7 +13,7 @@
 
 4.数据库文件 campus_agent_db：基于Mysql搭建，主要包含一张表：用户表users
 
-## 前端页面演示：
+## PC端前端页面演示：
 
 注册页面：
 <img width="1919" height="924" alt="image" src="https://github.com/user-attachments/assets/d830703e-67bd-44ee-88f7-1f9fb5dc46f4" />
@@ -43,3 +43,28 @@
 
 智能体对话演示4：考试查询
 <img width="1919" height="918" alt="image" src="https://github.com/user-attachments/assets/fd1841a8-048b-487e-a223-aa23a9d3667d" />
+
+## 移动端前端页面演示：
+
+注册页面：
+<img width="1080" height="2376" alt="Screenshot_20260617_151826" src="https://github.com/user-attachments/assets/0267312e-a0be-4461-9cc9-c82e859eb452" />
+
+登录页面：
+<img width="1080" height="2376" alt="Screenshot_20260617_151821" src="https://github.com/user-attachments/assets/31ea35c9-b576-4c37-9e83-8bfab8fe514a" />
+
+智能体对话页面：
+<img width="1080" height="2376" alt="Screenshot_20260617_152138" src="https://github.com/user-attachments/assets/d5f416a2-f041-40fa-b67b-828bf92acc72" />
+
+## 具体效果演示：
+
+智能体对话演示1：记忆功能
+<img width="1080" height="2376" alt="Screenshot_20260617_152303" src="https://github.com/user-attachments/assets/c520f964-b523-4914-941a-11eea04a0209" />
+
+智能体对话演示2：课程及教室查询
+<img width="1080" height="2376" alt="Screenshot_20260617_152532" src="https://github.com/user-attachments/assets/435ba020-c31c-4e3a-acfe-48df8ed72585" />
+
+智能体对话演示3：成绩查询
+<img width="1080" height="2376" alt="Screenshot_20260617_152644" src="https://github.com/user-attachments/assets/e84bded4-6223-45c1-b0c9-27f7fb78f0d8" />
+
+智能体对话演示4：考试查询
+<img width="1080" height="2376" alt="Screenshot_20260617_152721" src="https://github.com/user-attachments/assets/736f23fe-9d81-4442-bd9d-4e607fca9132" />
